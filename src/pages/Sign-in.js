@@ -16,7 +16,6 @@ export default function SignIn() {
 }
 
 const EstiloSignUp=styled.div`
-background-color: #8C12BE;
 padding: 24px;
 height: 100vh;
 display: flex;
