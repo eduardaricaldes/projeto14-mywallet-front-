@@ -1,20 +1,16 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export default function SignUp(){
-  return(
+export default function SignIn() {
+  return (
     <EstiloSignUp>
-      <div className="container">
-        <h1 className="title">MyWallet</h1>
-        <form className="form">
-          <input type= "text" placeholder="Nome"/>
-          <input type="email" placeholder="E-mail"/>
-          <input type="password" placeholder="Senha"/>
-          <input type="password" placeholder="Confirme a senha"/>
-          <button className="create">Cadastrar</button>
-        </form>
-        <Link to="/" className="link">Já tem uma conta? Entre agora!</Link>
-      </div>
+      <h1 className="title">MyWallet</h1>
+      <form className="form">
+        <input type="email" placeholder="E-mail"/>
+        <input type="password" placeholder="Senha"/>
+        <button className="create">Entrar</button>
+      </form>
+      <Link to="/signup" className="link">Primeira vez? Cadastre-se!</Link>
     </EstiloSignUp>
   )
 }
@@ -23,13 +19,10 @@ const EstiloSignUp=styled.div`
 background-color: #8C12BE;
 padding: 24px;
 height: 100vh;
-
-.container{
-  margin-top: 95px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
   .title{
     font-family:'Saira Stencil One', cursive;
     font-size: 32px;
