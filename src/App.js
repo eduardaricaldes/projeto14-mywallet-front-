@@ -1,13 +1,11 @@
-import styled from "styled-components";
-import SignIn  from "./pages/Sign-in";
+import { Routes, Route } from "react-router-dom";
+
+import SignUp  from "./pages/Sign-up";
 
 export default function App (){
   return(
-      <EstiloApp>
-        <SignIn/>
-      </EstiloApp>
+    <Routes>
+      <Route element={<SignUp/>} path="sign-in"/>
+    </Routes>
   )
 }
-
-const EstiloApp=styled.div`
-`

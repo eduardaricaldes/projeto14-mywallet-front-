@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 
-export default function SignIn(){
+export default function SignUp(){
   return(
-    <EstiloSignIn>
+    <EstiloSignUp>
       <div className="container">
         <h1 className="title">MyWallet</h1>
         <form className="form">
@@ -15,11 +15,11 @@ export default function SignIn(){
         </form>
         <a href="/login" className="link">Já tem uma conta? Entre agora!</a>
       </div>
-    </EstiloSignIn>
+    </EstiloSignUp>
   )
 }
 
-const EstiloSignIn=styled.div`
+const EstiloSignUp=styled.div`
 background-color: #8C12BE;
 padding: 24px;
 height: 100vh;
