@@ -1,8 +1,30 @@
+import { useState, useEffect, useContext } from 'react';
+import { AutenticacaoContext } from '../contexts/AuthenticationProvider';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import CashIn from './Cash-in';
+
+import { urls } from '../configs/urls';
 
 export default function Home() {
+  const [wallet, setWallet] = useState([]);
+  const [token] = useContext(AutenticacaoContext);
+
+  useEffect(() => {
+    axios.get(urls.wallet, {
+      headers: {
+        Authorization: token,
+      }
+    }).then((resp) => {
+      const { data } = resp;
+      setWallet(data);
+    }).catch((err) => {
+      console.error(err);
+      alert("erro ao recuperar dados de sua wallet");
+    })
+  }, []);
+
+
   return (
     <EstiloHome>
       <EstiloHeader>
