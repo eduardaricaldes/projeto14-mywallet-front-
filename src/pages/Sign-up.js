@@ -63,7 +63,8 @@ export default function SignUp(){
         password
       }).then((resp) => {
         navigate("/");
-      }).catch(() => {
+      }).catch((err) => {
+        console.log(err)
         alert("Erro ao cadastrar")
       })
     }
