@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import { AutenticacaoContext } from '../contexts/AuthenticationProvider';
-import { UsuarioContext } from '../contexts/UserProvider';
-
 import axios from 'axios';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { AutenticacaoContext } from '../contexts/AuthenticationProvider';
+import { UsuarioContext } from '../contexts/UserProvider';
+import exitIcon from '../assets/exit.svg'
 import { urls } from '../configs/urls';
 import WalletItems from '../components/Wallet-Items';
 
@@ -37,7 +37,9 @@ export default function Home() {
     <EstiloHome>
       <EstiloHeader>
         <h1>Olá, {usuario?.name}</h1>
-        <ion-icon name="exit-outline"></ion-icon>
+        <div className="exit-icon">
+          <img src={exitIcon} alt="exit icon"/>
+        </div>
       </EstiloHeader>
       <EstiloRegistros>
         {
@@ -84,9 +86,6 @@ display: flex;
 justify-content: space-between;
 margin-bottom: 22px;
 align-items: center;
-ion-icon{
-  color: #ffff;
-}
 
 h1{
   font-size: 26px;
@@ -129,6 +128,7 @@ justify-content:space-between;
 
 ion-icon{
   color: #ffff;
+  font-size: 26px;
 }
 
 .cash-in,
