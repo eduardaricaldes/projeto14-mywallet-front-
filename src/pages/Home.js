@@ -1,15 +1,19 @@
 import { useState, useEffect, useContext } from 'react';
 import { AutenticacaoContext } from '../contexts/AuthenticationProvider';
+import { UsuarioContext } from '../contexts/UserProvider';
+
 import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { urls } from '../configs/urls';
 import WalletItems from '../components/Wallet-Items';
 
 export default function Home() {
+  const navigate = useNavigate();
   const [wallet, setWallet] = useState([]);
   const [token] = useContext(AutenticacaoContext);
+  const [usuario] = useContext(UsuarioContext);
 
   useEffect(() => {
     axios.get(urls.wallet, {
@@ -22,6 +26,9 @@ export default function Home() {
     }).catch((err) => {
       console.error(err);
       alert("erro ao recuperar dados de sua wallet");
+      if(err.response.status === 401) {
+        navigate("/")
+      }
     })
   }, []);
 
@@ -29,7 +36,7 @@ export default function Home() {
   return (
     <EstiloHome>
       <EstiloHeader>
-        <h1>Olá, Fulano</h1>
+        <h1>Olá, {usuario?.name}</h1>
         <ion-icon name="exit-outline"></ion-icon>
       </EstiloHeader>
       <EstiloRegistros>

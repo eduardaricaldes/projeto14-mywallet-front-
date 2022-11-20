@@ -42,6 +42,9 @@ export default function CashIn (){
       }).catch((err) => {
         console.error(err)
         alert("Erro ao enviar essa entrada")
+        if(err.response.status === 401) {
+          navigate("/")
+        }
       })
     }
   }

@@ -4,11 +4,15 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { AutenticacaoContext } from '../contexts/AuthenticationProvider';
+import { UsuarioContext } from '../contexts/UserProvider';
+
 import { urls } from '../configs/urls';
 
 export default function SignIn() {
   const navigate = useNavigate();
   const [token, armazenarToken, logado, setLogado] = useContext(AutenticacaoContext);
+  const [usuario, setDadosDoUsuario] = useContext(UsuarioContext);
+
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -31,10 +35,11 @@ export default function SignIn() {
       email,
       password,
     }).then((resp) => {
-      const { token } = resp.data;
+      const { token, name, email } = resp.data;
       if(token) {
         armazenarToken(token);
         setLogado(true);
+        setDadosDoUsuario({name, email})
         navigate("/home");
       }else {
         alert("error ao obter dados da api")

@@ -42,6 +42,9 @@ export default function CashOut (){
       }).catch((err) => {
         console.error(err)
         alert("Erro ao enviar essa saida")
+        if(err.response.status === 401) {
+          navigate("/")
+        }
       })
     }
   }
