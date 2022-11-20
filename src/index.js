@@ -1,10 +1,13 @@
 import * as ReactDom from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
+import { AutenticacaoProvider } from './contexts/AutenticacaoProvider';
 import App from './App';
 import "./reset.css";
 
 ReactDom.render(
 <BrowserRouter>
-    <App/>
+    <AutenticacaoProvider>
+        <App/>
+    </AutenticacaoProvider>
 </BrowserRouter>
 , document.getElementById ('root'))
