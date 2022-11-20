@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import {AutenticacaoContext} from './contexts/AutenticacaoProvider'
+import {AutenticacaoContext} from './contexts/AuthenticationProvider'
 
 import SignUp  from "./pages/Sign-up";
 import Login  from "./pages/Sign-in";
