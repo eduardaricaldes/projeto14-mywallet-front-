@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import WalletItem from './Wallet-Item';
+const realLocale = Intl.NumberFormat("pt-BR")
 
 export default function WalletItems({ items }) {
   const sumItems = items.reduce((acc, item) => {
@@ -25,7 +26,7 @@ export default function WalletItems({ items }) {
       </WalletItemsStyle>
       <WalletBalanceStyle>
         <span className="label">Saldo</span>
-        <span className={`sum ${classBalance}`}>{sumItems}</span>
+        <span className={`sum ${classBalance}`}>{realLocale.format(sumItems)}</span>
       </WalletBalanceStyle>
     </MainWalletStyle>
   )

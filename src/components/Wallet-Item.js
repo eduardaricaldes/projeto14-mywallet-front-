@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import dayjs from 'dayjs'
 
-let realLocale = Intl.NumberFormat("pt-BR")
+const realLocale = Intl.NumberFormat("pt-BR")
 
 export default function WalletItem({ item }) {
   const typeItem = item.type === 'wallet-in'? 'in': 'out';
