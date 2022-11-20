@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { urls } from '../configs/urls';
+import WalletItems from '../components/Wallet-Items';
 
 export default function Home() {
   const [wallet, setWallet] = useState([]);
@@ -32,9 +33,17 @@ export default function Home() {
         <ion-icon name="exit-outline"></ion-icon>
       </EstiloHeader>
       <EstiloRegistros>
-        <EstiloSemDados>
-          <p>Nao ha registros de entrada ou saida</p>
-        </EstiloSemDados>
+        {
+          wallet.length > 0 ?
+          (
+            <WalletItems items={wallet}/>
+          ):
+          (
+            <EstiloSemDados>
+              <p>Nao ha registros de entrada ou saida</p>
+            </EstiloSemDados>
+          )
+        }        
       </EstiloRegistros>
       <EstiloAcoes>
          <Link to="/cashin" className="next-page">
