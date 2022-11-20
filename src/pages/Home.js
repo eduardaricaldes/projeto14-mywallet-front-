@@ -33,11 +33,24 @@ export default function Home() {
   }, []);
 
 
+  function logout() {
+    axios.get(urls.logout, {
+      headers: {
+        Authorization: token,
+      }
+    }).then((resp) => {
+      navigate("/")
+    }).catch((err) => {
+      console.error(err);
+      alert("erro ao fazer logout.Tente novamente")
+    })
+  }
+
   return (
     <EstiloHome>
       <EstiloHeader>
         <h1>Olá, {usuario?.name}</h1>
-        <div className="exit-icon">
+        <div className="exit-icon" onClick={logout}>
           <img src={exitIcon} alt="exit icon"/>
         </div>
       </EstiloHeader>
