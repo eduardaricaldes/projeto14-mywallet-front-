@@ -1,13 +1,56 @@
+import { useState, useContext } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { AutenticacaoContext } from '../contexts/AuthenticationProvider';
+import { urls } from '../configs/urls';
 
 export default function SignIn() {
+  const navigate = useNavigate();
+  const [token, armazenarToken, logado, setLogado] = useContext(AutenticacaoContext);
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
+  function onChangePassword(value) {
+    if(value !== "") {
+      setPassword(value)
+    }
+  }
+
+  function onChangeEmail(value) {
+    if(value !== "") {
+      setEmail(value)
+    }
+  }
+
+  function submit(event) {
+    event.preventDefault();
+
+    axios.post(urls.signin, {
+      email,
+      password,
+    }).then((resp) => {
+      const { token } = resp.data;
+      if(token) {
+        armazenarToken(token);
+        setLogado(true);
+        navigate("/home");
+      }else {
+        alert("error ao obter dados da api")
+        navigate("/");
+      }
+    }).catch((err) => {
+      alert('Usuario e senha invalidos')
+    }); 
+  }
+
   return (
     <EstiloSignUp>
       <h1 className="title">MyWallet</h1>
-      <form className="form">
-        <input type="email" placeholder="E-mail"/>
-        <input type="password" placeholder="Senha"/>
+      <form className="form" onSubmit={submit}>
+        <input type="email" placeholder="E-mail" onChange={event => onChangeEmail(event.target.value)}/>
+        <input type="password" placeholder="Senha" onChange={event => onChangePassword(event.target.value)}/>
         <button className="create">Entrar</button>
       </form>
       <Link to="/signup" className="link">Primeira vez? Cadastre-se!</Link>
